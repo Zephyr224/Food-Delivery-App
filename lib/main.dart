@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 
-import 'core/themes/light_mode.dart';
 import 'core/themes/theme_provider.dart';
 import 'src/example_feature/views/login_page.dart';
 
