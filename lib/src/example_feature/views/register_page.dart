@@ -13,16 +13,20 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   // instantiate text controllers
+  late TextEditingController usernameController;
   late TextEditingController emailController;
   late TextEditingController passwordController;
+  late TextEditingController confirmPasswordController;
 
   // instantiate text controllers
   late FocusNode focusNode;
 
   @override
   void initState() {
+    usernameController = TextEditingController();
     emailController = TextEditingController();
     passwordController = TextEditingController();
+    confirmPasswordController = TextEditingController();
     focusNode = FocusNode();
 
     super.initState();
@@ -34,6 +38,8 @@ class _LoginPageState extends State<LoginPage> {
 
     emailController.dispose();
     passwordController.dispose();
+    usernameController.dispose();
+    confirmPasswordController.dispose();
 
     focusNode.dispose();
   }
@@ -52,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
           backgroundColor: Colors.transparent,
           centerTitle: true,
           title: const Text(
-            "Login",
+            "Register",
             style: TextStyle(
               fontSize: pageHeaderFontSize,
             ),
@@ -62,6 +68,16 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              AppTextField(
+                controller: usernameController,
+                labelText: "Username",
+                textInputType: TextInputType.text,
+                prefixIcon: Icon(
+                  Icons.email,
+                  color: Colors
+                      .grey.shade600, // TODO: implement initState set in themes
+                ),
+              ),
               const SizedBox(height: 50),
               AppTextField(
                 controller: emailController,
@@ -77,6 +93,18 @@ class _LoginPageState extends State<LoginPage> {
               AppTextField(
                 controller: passwordController,
                 labelText: "Password",
+                textInputType: TextInputType.text,
+                obscure: true,
+                prefixIcon: Icon(
+                  Icons.lock,
+                  color: Colors
+                      .grey.shade600, // TODO: implement initState set in themes
+                ),
+              ),
+              const SizedBox(height: 30),
+              AppTextField(
+                controller: confirmPasswordController,
+                labelText: "Confirm Password",
                 textInputType: TextInputType.text,
                 obscure: true,
                 prefixIcon: Icon(
