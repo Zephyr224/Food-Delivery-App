@@ -4,14 +4,14 @@ import '../common/constants.dart';
 import '../widgets/alternative_login_widget.dart';
 import '../widgets/app_text_field.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   // instantiate text controllers
   late TextEditingController usernameController;
   late TextEditingController emailController;
@@ -78,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                       .grey.shade600, // TODO: implement initState set in themes
                 ),
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
               AppTextField(
                 controller: emailController,
                 labelText: "Email",
@@ -125,13 +125,12 @@ class _LoginPageState extends State<LoginPage> {
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    elevation: 8,
-                    backgroundColor: Colors.blueGrey.shade500,
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    )
-                  ),
+                      elevation: 8,
+                      backgroundColor: Colors.blueGrey.shade500,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      )),
                   child: const Text("Login"),
                 ),
               ),

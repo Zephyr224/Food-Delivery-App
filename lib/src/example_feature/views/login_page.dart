@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/src/example_feature/views/register_page.dart';
 
 import '../common/constants.dart';
 import '../widgets/alternative_login_widget.dart';
+import '../widgets/app_divider.dart';
 import '../widgets/app_text_field.dart';
 
 class LoginPage extends StatefulWidget {
@@ -97,38 +99,33 @@ class _LoginPageState extends State<LoginPage> {
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    elevation: 8,
-                    backgroundColor: Colors.blueGrey.shade500,
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    )
-                  ),
+                      elevation: 8,
+                      backgroundColor: Colors.blueGrey.shade500,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      )),
                   child: const Text("Login"),
                 ),
               ),
-              const SizedBox(height: 50),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Divider(
-                        indent: 10,
-                        endIndent: 10,
-                      ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const RegisterPage(),
+                  ));
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 280),
+                  child: Text(
+                    "Or Register!",
+                    style: TextStyle(
+                      color: Colors.blue.shade300,
                     ),
-                    Text("Or Login With"),
-                    Expanded(
-                      child: Divider(
-                        indent: 10,
-                        endIndent: 10,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
+              const SizedBox(height: 50),
+              const AppDivider(text: "Or Login With"),
               const SizedBox(height: 30),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 100),

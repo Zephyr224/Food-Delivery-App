@@ -32,6 +32,10 @@ class AppTextField extends StatelessWidget {
           controller: controller,
           keyboardType: textInputType,
           obscureText: obscure,
+          style: TextStyle(
+            height: 3,
+            color: Colors.white,
+          ),
           decoration: InputDecoration(
             prefixIcon: prefixIcon,
             suffix: suffixIcon,

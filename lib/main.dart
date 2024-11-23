@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:food_delivery_app/core/services/service_helpers/login_and_register_helpers.dart';
 import 'package:provider/provider.dart';
 
 import 'core/themes/theme_provider.dart';
@@ -26,8 +27,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: context.read<ThemeProvider>().themeData,
-      home: const LoginPage(),
+      home: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => LoginAndRegisterHelper()),
+        ],
+        child: const LoginPage(),
+      ),
     );
   }
 }
-
