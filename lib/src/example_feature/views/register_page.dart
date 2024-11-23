@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/src/example_feature/widgets/app_divider.dart';
 
 import '../common/constants.dart';
 import '../widgets/alternative_login_widget.dart';
+import '../widgets/alternative_registers_widget.dart';
 import '../widgets/app_text_field.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -134,46 +136,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: const Text("Login"),
                 ),
               ),
-              const SizedBox(height: 50),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Divider(
-                        indent: 10,
-                        endIndent: 10,
-                      ),
-                    ),
-                    Text("Or Login With"),
-                    Expanded(
-                      child: Divider(
-                        indent: 10,
-                        endIndent: 10,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
               const SizedBox(height: 30),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 100),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    AlternativeLoginWidget(
-                      assetPath: "assets/images/facebook.png",
-                      onTap: () {},
-                    ),
-                    const SizedBox(width: 20),
-                    AlternativeLoginWidget(
-                      assetPath: "assets/images/google.png",
-                      onTap: () {},
-                    ),
-                  ],
-                ),
-              ),
+              const AppDivider(text: "Or Register With"),
+              const SizedBox(height: 30),
+              const AppAlternativeRegistersWidget(),
             ],
           ),
         ),
@@ -181,3 +147,5 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 }
+
+
