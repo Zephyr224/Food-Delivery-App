@@ -14,17 +14,12 @@ class AlternativeLoginWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-        ),
-        onPressed: () {},
-        child: SizedBox(
-          height: 50,
-          width: 50,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(50),
-            child: Image.asset(assetPath),
-          ),
+      child: SizedBox(
+        height: 50,
+        width: 50,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(50),
+          child: Image.asset(assetPath),
         ),
       ),
     );

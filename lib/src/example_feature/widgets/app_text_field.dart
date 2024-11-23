@@ -34,7 +34,6 @@ class AppTextField extends StatelessWidget {
           obscureText: obscure,
           style: TextStyle(
             height: 3,
-            color: Colors.white,
           ),
           decoration: InputDecoration(
             prefixIcon: prefixIcon,
