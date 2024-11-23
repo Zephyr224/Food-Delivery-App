@@ -10,26 +10,30 @@ class AppDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Expanded(
-            child: Divider(
-              indent: 10,
-              endIndent: 10,
-            ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const Expanded(
+          child: Divider(
+            indent: 10,
+            endIndent: 10,
+            color: Colors.grey,
           ),
-          Text(text),
-          const Expanded(
-            child: Divider(
-              indent: 10,
-              endIndent: 10,
-            ),
+        ),
+        Text(
+          text,
+          style: const TextStyle(
+            color: Colors.grey,
           ),
-        ],
-      ),
+        ),
+        const Expanded(
+          child: Divider(
+            indent: 10,
+            endIndent: 10,
+            color: Colors.grey,
+          ),
+        ),
+      ],
     );
   }
 }

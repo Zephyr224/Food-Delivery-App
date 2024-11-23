@@ -7,6 +7,8 @@ import '../../../src/example_feature/views/login_page.dart';
 class AuthGate extends StatelessWidget {
   const AuthGate({super.key});
 
+  // class cheecks if we are logged in or not
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

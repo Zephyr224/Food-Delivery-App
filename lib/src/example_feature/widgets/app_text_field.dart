@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../common/constants.dart';
 
-class AppTextField extends StatelessWidget {
+class AppTextField extends StatefulWidget {
   const AppTextField({
     super.key,
     required this.controller,
@@ -15,42 +15,44 @@ class AppTextField extends StatelessWidget {
 
   final TextEditingController controller;
   final Icon? prefixIcon;
-  final Icon? suffixIcon;
+  final IconButton? suffixIcon;
   final TextInputType? textInputType;
   final String labelText;
   final bool obscure;
 
   @override
+  State<AppTextField> createState() => _AppTextFieldState();
+}
+
+class _AppTextFieldState extends State<AppTextField> {
+  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: textFieldPadding),
-      child: Material(
-        elevation: 12,
-        color: Colors.white70,
-        borderRadius: BorderRadius.circular(textFieldRadius),
-        child: TextField(
-          controller: controller,
-          keyboardType: textInputType,
-          obscureText: obscure,
-          style: TextStyle(
-            height: 3,
+    return Material(
+      elevation: 12,
+      color: Colors.white70,
+      borderRadius: BorderRadius.circular(textFieldRadius),
+      child: TextField(
+        controller: widget.controller,
+        keyboardType: widget.textInputType,
+        obscureText: widget.obscure,
+        style: const TextStyle(
+          height: 3,
+        ),
+        decoration: InputDecoration(
+          prefixIcon: widget.prefixIcon,
+          suffix: widget.suffixIcon,
+          labelText: widget.labelText,
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(textFieldRadius),
+              borderSide: BorderSide.none),
+          focusColor: const Color.fromARGB(255, 25, 99, 209), // in themes
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: Colors.red.shade900),
           ),
-          decoration: InputDecoration(
-            prefixIcon: prefixIcon,
-            suffix: suffixIcon,
-            labelText: labelText,
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(textFieldRadius),
-                borderSide: BorderSide.none),
-            focusColor: const Color.fromARGB(255, 25, 99, 209), // in themes
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: Colors.red.shade900),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: Colors.red.shade900),
-            ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: Colors.red.shade900),
           ),
         ),
       ),

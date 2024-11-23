@@ -4,18 +4,42 @@ import 'package:food_delivery_app/core/services/auth/auth_service.dart';
 class LoginAndRegisterHelper extends ChangeNotifier {
   final authServ = AuthService();
 
-  void login(String email, String password, BuildContext context) async {
+  void login(String email, String password, BuildContext context) {
     try {
-      await authServ.signInWithEmailAndPassword(email, password);
+      authServ.signInWithEmailAndPassword(email, password);
     } catch (e) {
       showDialog(
         context: context,
         builder: (context) {
-          return AlertDialog(
-            title: Text(e.toString()),
-          );
+          return SnackBar(content: Text(e.toString()));
         },
       );
     }
+  }
+
+  void register(String email, String password, String confirmPassword, BuildContext context) async {
+    if (password == confirmPassword) {
+      try {
+        await authServ.signUpUsingEmailAndPassword(email, password);
+      } catch (e) {
+        showDialog(
+        context: context,
+        builder: (context) {
+          return SnackBar(content: Text(e.toString()));
+        },
+      );
+      }
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+            title: Text("Passwords Don't Match!"),
+          ),
+      );
+    }
+  }
+
+  void logout() {
+    authServ.signOut();
   }
 }
