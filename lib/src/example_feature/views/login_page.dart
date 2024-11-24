@@ -16,6 +16,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool passwordVisible = true;
+
   // instantiate text controllers
   late TextEditingController emailController;
   late TextEditingController passwordController;
@@ -85,7 +87,19 @@ class _LoginPageState extends State<LoginPage> {
                     controller: passwordController,
                     labelText: "Password",
                     textInputType: TextInputType.text,
-                    obscure: true,
+                    obscure: passwordVisible,
+                    suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            passwordVisible = !passwordVisible;
+                          });
+                        }, // obscure listen to provider class, when icon button pressed, change that value
+                        icon: Icon(
+                          passwordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Colors.grey.shade600,
+                        )),
                     prefixIcon: Icon(
                       Icons.lock,
                       color: Colors.grey
@@ -127,12 +141,13 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.only(left: 270),
                     child: TextButton(
                       onPressed: () {
-                        final register = context.read<LoginAndRegisterHelper>().register;
+                        final register =
+                            context.read<LoginAndRegisterHelper>().register;
                         emailController.clear();
                         passwordController.clear();
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => RegisterPage(
-                            register: register,                                
+                            register: register,
                             context1: context,
                           ),
                         ));

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:food_delivery_app/core/navigation/routes.dart';
-import 'package:food_delivery_app/core/services/service_helpers/login_and_register_helpers.dart';
+import 'package:food_delivery_app/core/services/auth/auth_gate.dart';
 import 'package:provider/provider.dart';
 
-import 'core/services/auth/auth_gate.dart';
+import 'core/services/service_helpers/login_and_register_helpers.dart';
 import 'core/themes/theme_provider.dart';
+import 'src/example_feature/views/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -17,24 +17,27 @@ class LoginAndRegisterHelper extends ChangeNotifier {
     }
   }
 
-  void register(String email, String password, String confirmPassword, BuildContext context) async {
+  void register(String email, String password, String confirmPassword,
+      BuildContext context) async {
     if (password == confirmPassword) {
       try {
         await authServ.signUpUsingEmailAndPassword(email, password);
       } catch (e) {
         showDialog(
-        context: context,
-        builder: (context) {
-          return SnackBar(content: Text(e.toString()));
-        },
-      );
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              content: Text(e.toString()),
+            );
+          },
+        );
       }
     } else {
       showDialog(
         context: context,
         builder: (context) => const AlertDialog(
-            title: Text("Passwords Don't Match!"),
-          ),
+          content: Text("Passwords Don't Match"),
+        ),
       );
     }
   }
