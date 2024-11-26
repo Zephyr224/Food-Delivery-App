@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/src/example_feature/views/login_page.dart';
-import 'package:food_delivery_app/src/example_feature/views/register_page.dart';
 
 class Routes {
   static const String loginPage = "loginPage";

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/core/services/service_helpers/login_and_register_helpers.dart';
-import 'package:food_delivery_app/src/example_feature/views/home_page.dart';
 import 'package:food_delivery_app/src/example_feature/widgets/app_divider.dart';
-import 'package:provider/provider.dart';
 
 import '../common/constants.dart';
 import '../widgets/alternative_login_widgets.dart';
