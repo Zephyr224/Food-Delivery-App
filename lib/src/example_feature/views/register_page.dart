@@ -29,6 +29,8 @@ class _RegisterPageState extends State<RegisterPage> {
   // instantiate text controllers
   late FocusNode focusNode;
 
+  bool passwordVisible = true;
+
   @override
   void initState() {
     usernameController = TextEditingController();
@@ -105,7 +107,19 @@ class _RegisterPageState extends State<RegisterPage> {
                     controller: passwordController,
                     labelText: "Password",
                     textInputType: TextInputType.text,
-                    obscure: true,
+                    obscure: passwordVisible,
+                    suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            passwordVisible = !passwordVisible;
+                          });
+                        }, // obscure listen to provider class, when icon button pressed, change that value
+                        icon: Icon(
+                          passwordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Colors.grey.shade600,
+                        )),
                     prefixIcon: Icon(
                       Icons.lock,
                       color: Colors.grey
@@ -117,7 +131,19 @@ class _RegisterPageState extends State<RegisterPage> {
                     controller: confirmPasswordController,
                     labelText: "Confirm Password",
                     textInputType: TextInputType.text,
-                    obscure: true,
+                    obscure: passwordVisible,
+                    suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            passwordVisible = !passwordVisible;
+                          });
+                        }, // obscure listen to provider class, when icon button pressed, change that value
+                        icon: Icon(
+                          passwordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Colors.grey.shade600,
+                        )),
                     prefixIcon: Icon(
                       Icons.lock,
                       color: Colors.grey
