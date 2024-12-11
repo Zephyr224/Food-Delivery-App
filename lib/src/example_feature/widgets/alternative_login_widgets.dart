@@ -13,11 +13,11 @@ class AppAlternativeLoginWidges extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         AlternativeLoginWidget(
-          assetPath: "assets/images/facebook.png",
+          assetPath: "assets/images/alt_logins/facebook.png",
           onTap: () {},
         ),
         AlternativeLoginWidget(
-          assetPath: "assets/images/google.png",
+          assetPath: "assets/images/alt_logins/google.png",
           onTap: () {},
         ),
       ],

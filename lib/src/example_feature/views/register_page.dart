@@ -9,7 +9,7 @@ class RegisterPage extends StatefulWidget {
   const RegisterPage(
       {super.key, required this.register, required this.context1});
 
-  final Function(String, String, String, BuildContext) register;
+  final Function(String, String, String, String, BuildContext) register;
   final BuildContext context1;
 
   @override
@@ -159,6 +159,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     child: ElevatedButton(
                       onPressed: () {
                         widget.register(
+                          usernameController.text,
                           emailController.text,
                           passwordController.text,
                           confirmPasswordController.text,

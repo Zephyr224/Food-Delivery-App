@@ -17,11 +17,11 @@ class LoginAndRegisterHelper extends ChangeNotifier {
     }
   }
 
-  void register(String email, String password, String confirmPassword,
+  void register(String username, String email, String password, String confirmPassword,
       BuildContext context) async {
     if (password == confirmPassword) {
       try {
-        await authServ.signUpUsingEmailAndPassword(email, password);
+        await authServ.signUpUsingEmailAndPassword(username, email, password);
       } catch (e) {
         showDialog(
           context: context,

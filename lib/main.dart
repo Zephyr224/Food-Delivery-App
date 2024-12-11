@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:food_delivery_app/core/services/auth/auth_gate.dart';
+import 'package:food_delivery_app/src/example_feature/data/slider_data.dart';
 import 'package:provider/provider.dart';
 
 import 'core/services/service_helpers/login_and_register_helpers.dart';
@@ -31,6 +32,8 @@ class MyApp extends StatelessWidget {
       home: MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => LoginAndRegisterHelper()),
+          
+          ChangeNotifierProvider(create: (context) => SliderData()),
         ],
         child: const AuthGate(),
       ),
