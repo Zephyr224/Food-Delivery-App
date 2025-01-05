@@ -18,6 +18,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   // late TextEditingController searchController;
 
+  // instantiate slider data
+  SliderData sliderData = SliderData();
+
   // instantiate text controllers
   late FocusNode focusNode;
 
@@ -27,6 +30,8 @@ class _HomePageState extends State<HomePage> {
 
     // searchController = TextEditingController();
 
+    context.read<SliderData>().startTimer();
+
     focusNode = FocusNode();
   }
 
@@ -35,6 +40,9 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
     focusNode.dispose();
     // searchController.dispose();
+
+    sliderData.timer?.cancel();
+    sliderData.pageController.dispose();
   }
 
   @override
@@ -141,41 +149,38 @@ class _HomePageState extends State<HomePage> {
                 expandedHeight: 260,
                 collapsedHeight: 260,
                 flexibleSpace: Consumer<SliderData>(
-                  builder: (context, value, child) {
+                  builder: (context, sliderValue, child) {
                     return PageView.builder(
-                      controller: value.pageController,
+                      controller: sliderValue.pageController,
                       allowImplicitScrolling: true,
                       itemCount: FoodInfo.foodSpecials.length,
-                      onPageChanged: value.onPageChanged,
+                      onPageChanged: sliderValue.onPageChanged,
                       itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                height: 240,
-                                width: double.infinity,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(20),
-                                  child: Image.asset(
-                                    FoodInfo.foodSpecials[index],
-                                    fit: BoxFit.cover,
-                                  ),
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 240,
+                              width: double.infinity,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Image.asset(
+                                  FoodInfo.foodSpecials[index],
+                                  fit: BoxFit.cover,
                                 ),
                               ),
-                              Text(
-                                FoodInfo.foodSpecialsNames[index],
-                              ),
-                            ],
-                          ),
+                            ),
+                            Text(
+                              FoodInfo.foodSpecialsNames[index],
+                            ),
+                          ],
                         );
                       },
                     );
                   },
                 ),
               ),
-              const SliverAppBar(
+              const SliverAppBar( 
                 expandedHeight: 60,
                 flexibleSpace: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -202,7 +207,6 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         SizedBox(
                           height: 170,
-                          width: 170,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(30),
                             child: Card(
