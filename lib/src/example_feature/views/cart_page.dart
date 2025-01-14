@@ -12,7 +12,7 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text("Cart Page"),
+        child: Text("Cart Page Baby"),
       ),
     );
   }
