@@ -1,34 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/core/services/service_helpers/login_and_register_helpers.dart';
-import 'package:food_delivery_app/src/example_feature/views/register_page.dart';
-import 'package:food_delivery_app/src/example_feature/widgets/alternative_login_widgets.dart';
-import 'package:provider/provider.dart';
+import 'package:food_delivery_app/src/example_feature/widgets/app_divider.dart';
 
-import '../common/constants.dart';
-import '../widgets/app_divider.dart';
-import '../widgets/app_text_field.dart';
+import '../../common/constants.dart';
+import '../../widgets/alternative_login_widgets.dart';
+import '../../widgets/app_text_field.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage(
+      {super.key, required this.register, required this.context1});
+
+  final Function(String, String, String, String, BuildContext) register;
+  final BuildContext context1;
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  bool passwordVisible = true;
-
+class _RegisterPageState extends State<RegisterPage> {
   // instantiate text controllers
+  late TextEditingController usernameController;
   late TextEditingController emailController;
   late TextEditingController passwordController;
+  late TextEditingController confirmPasswordController;
 
   // instantiate text controllers
   late FocusNode focusNode;
 
+  bool passwordVisible = true;
+
   @override
   void initState() {
+    usernameController = TextEditingController();
     emailController = TextEditingController();
     passwordController = TextEditingController();
+    confirmPasswordController = TextEditingController();
     focusNode = FocusNode();
 
     super.initState();
@@ -40,6 +45,8 @@ class _LoginPageState extends State<LoginPage> {
 
     emailController.dispose();
     passwordController.dispose();
+    usernameController.dispose();
+    confirmPasswordController.dispose();
 
     focusNode.dispose();
   }
@@ -58,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
           backgroundColor: Colors.transparent,
           centerTitle: true,
           title: const Text(
-            "Login",
+            "Register",
             style: TextStyle(
               fontSize: pageHeaderFontSize,
             ),
@@ -71,7 +78,17 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 50),
+                  AppTextField(
+                    controller: usernameController,
+                    labelText: "Username",
+                    textInputType: TextInputType.text,
+                    prefixIcon: Icon(
+                      Icons.person,
+                      color: Colors.grey
+                          .shade600, // TODO: implement initState set in themes
+                    ),
+                  ),
+                  const SizedBox(height: 30),
                   AppTextField(
                     controller: emailController,
                     labelText: "Email",
@@ -106,15 +123,34 @@ class _LoginPageState extends State<LoginPage> {
                           .shade600, // TODO: implement initState set in themes
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 230),
-                    child: Text(
-                      "Forgot Password?",
-                      style: TextStyle(
-                        color: Colors.blue.shade400,
-                      ),
+                  const SizedBox(height: 30),
+                  AppTextField(
+                    controller: confirmPasswordController,
+                    labelText: "Confirm Password",
+                    textInputType: TextInputType.text,
+                    obscure: passwordVisible,
+                    suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            passwordVisible = !passwordVisible;
+                          });
+                        }, // obscure listen to provider class, when icon button pressed, change that value
+                        icon: Icon(
+                          passwordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Colors.grey.shade600,
+                        )),
+                    prefixIcon: Icon(
+                      Icons.lock,
+                      color: Colors.grey
+                          .shade600, // TODO: implement initState set in themes
                     ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 230),
+                    child: Text("Forgot Password?"),
                   ),
                   const SizedBox(height: 50),
                   SizedBox(
@@ -122,10 +158,14 @@ class _LoginPageState extends State<LoginPage> {
                     width: MediaQuery.of(context).size.width * 0.9,
                     child: ElevatedButton(
                       onPressed: () {
-                        context.read<LoginAndRegisterHelper>().login(
-                            emailController.text,
-                            passwordController.text,
-                            context);
+                        widget.register(
+                          usernameController.text,
+                          emailController.text,
+                          passwordController.text,
+                          confirmPasswordController.text,
+                          widget.context1,
+                        );
+                        Navigator.pop(context);
                       },
                       style: ElevatedButton.styleFrom(
                           elevation: 8,
@@ -134,34 +174,13 @@ class _LoginPageState extends State<LoginPage> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15),
                           )),
-                      child: const Text("Login"),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 270),
-                    child: TextButton(
-                      onPressed: () {
-                        final register =
-                            context.read<LoginAndRegisterHelper>().register;
-                        emailController.clear();
-                        passwordController.clear();
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => RegisterPage(
-                            register: register,
-                            context1: context,
-                          ),
-                        ));
-                      },
-                      child: Text(
-                        "Or Register!",
-                        style: TextStyle(color: Colors.grey.shade600),
-                      ),
+                      child: const Text("Register"),
                     ),
                   ),
                   const SizedBox(height: 30),
-                  const AppDivider(text: "Or Login With"),
+                  const AppDivider(text: "Or Register With"),
                   const SizedBox(height: 30),
-                  const AppAlternativeLoginWidges()
+                  const AppAlternativeLoginWidges(),
                 ],
               ),
             ),
