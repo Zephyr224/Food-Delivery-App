@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 import 'core/services/service_helpers/login_and_register_helpers.dart';
 import 'core/themes/theme_provider.dart';
-import 'src/example_feature/views/login_page.dart';
+import 'src/example_feature/views/auth/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
