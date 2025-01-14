@@ -164,9 +164,29 @@ class _HomePageState extends State<HomePage> {
                               width: double.infinity,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(20),
-                                child: Image.asset(
-                                  FoodInfo.foodSpecials[index],
-                                  fit: BoxFit.cover,
+                                child: Stack(
+                                  fit: StackFit.expand,
+                                  children: [
+                                    Image.asset(
+                                      FoodInfo.foodSpecials[index],
+                                      fit: BoxFit.cover,
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(  
+                                        borderRadius: BorderRadius.circular(20),
+                                        gradient: LinearGradient(
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                          colors: [
+                                            Colors.transparent,
+                                            Colors.black.withOpacity(0.1),
+                                            Colors.black.withOpacity(0.3),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    
+                                  ],
                                 ),
                               ),
                             ),
@@ -180,7 +200,7 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
               ),
-              const SliverAppBar( 
+              const SliverAppBar(
                 expandedHeight: 60,
                 flexibleSpace: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
