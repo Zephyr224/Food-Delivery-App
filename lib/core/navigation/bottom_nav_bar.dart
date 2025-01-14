@@ -18,8 +18,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   final List<Widget> pages = const [
     HomePage(),
-    NearMePage(),
     CartPage(),
+    NearMePage(),
     FavoritesPage(),
     ProfilePage(),
   ];
@@ -47,11 +47,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
               label: "",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart),
+              icon: Icon(Icons.location_searching),
               label: "",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.location_searching),
+              icon: Icon(Icons.shopping_cart),
               label: "",
               
             ),
