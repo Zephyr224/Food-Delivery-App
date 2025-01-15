@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/core/navigation/bottom_nav_bar.dart';
 
-import '../../../src/example_feature/views/home_page.dart';
+import '../../../src/example_feature/views/bottom_nav_views/home_page.dart';
 import '../../../src/example_feature/views/auth/login_page.dart';
 
 class AuthGate extends StatelessWidget {

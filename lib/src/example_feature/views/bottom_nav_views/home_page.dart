@@ -6,7 +6,7 @@ import 'package:food_delivery_app/src/example_feature/common/constants.dart';
 import 'package:food_delivery_app/src/example_feature/data/slider_data.dart';
 import 'package:provider/provider.dart';
 
-import '../widgets/body_text_widget.dart';
+import '../../widgets/body_text_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
