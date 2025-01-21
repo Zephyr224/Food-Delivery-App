@@ -6,10 +6,15 @@ import '../../widgets/alternative_login_widgets.dart';
 import '../../widgets/app_text_field.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage(
-      {super.key, required this.register, required this.context1});
+  const RegisterPage({
+    super.key,
+    required this.register,
+    required this.context1,
+    required this.currentUserEmail,
+  });
 
   final Function(String, String, String, String, BuildContext) register;
+  final VoidCallback currentUserEmail;
   final BuildContext context1;
 
   @override
@@ -166,7 +171,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           confirmPasswordController.text,
                           widget.context1,
                         );
-                        debugPrint("Passed register method");
+                        widget.currentUserEmail;
+                        debugPrint("Register button pressed");
                         Navigator.pop(context);
                       },
                       style: ElevatedButton.styleFrom(

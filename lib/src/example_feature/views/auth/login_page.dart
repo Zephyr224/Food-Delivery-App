@@ -126,6 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                             emailController.text,
                             passwordController.text,
                             context);
+                        context.read<LoginAndRegisterHelper>().currentUserEmail();
                       },
                       style: ElevatedButton.styleFrom(
                           elevation: 8,
@@ -143,12 +144,14 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () {
                         final register =
                             context.read<LoginAndRegisterHelper>().register;
+                            final currentUserEmail1 = context.read<LoginAndRegisterHelper>().currentUserEmail;
                         emailController.clear();
                         passwordController.clear();
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => RegisterPage(
                             register: register,
                             context1: context,
+                            currentUserEmail: currentUserEmail1,
                           ),
                         ));
                       },

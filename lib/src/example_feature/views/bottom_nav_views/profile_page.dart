@@ -27,28 +27,28 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   backgroundColor: Colors.green,
                   foregroundColor: Colors.white,
                   radius: 30,
                   child: Text("ZS"),
                 ),
-                SizedBox(width: 15),
+                const SizedBox(width: 15),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "Username",
                       style: TextStyle(
                         fontSize: 25,
                       ),
                     ),
                     Text(
-                      "email@gmail.com",
-                      style: TextStyle(
+                      context.read<LoginAndRegisterHelper>().userEmail,
+                      style: const TextStyle(
                           // fontSize: 20,
                           ),
                     ),
@@ -119,5 +119,3 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 }
-
-

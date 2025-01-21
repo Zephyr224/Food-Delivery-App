@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 class AuthService {
   //get instance of auth
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  String currentUserEmail = "User";
 
   // get current user email
   Future<String> getCurrentUserEmail() async {

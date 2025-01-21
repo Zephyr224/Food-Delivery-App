@@ -5,8 +5,8 @@ class LoginAndRegisterHelper extends ChangeNotifier {
   final authServ = AuthService();
   String userEmail = "Loading...";
 
-  void currentUserEmail() {
-    userEmail = authServ.getCurrentUserEmail().toString();
+  void currentUserEmail() async {
+    userEmail = await authServ.getCurrentUserEmail();
   }
 
   void login(String email, String password, BuildContext context) {
@@ -23,33 +23,31 @@ class LoginAndRegisterHelper extends ChangeNotifier {
   }
 
   void register(String username, String email, String password, String confirmPassword,
-      BuildContext context) async {
-    if (password == confirmPassword) {
-      try {
-        await authServ.signUpUsingEmailAndPassword(username, email, password);
-        debugPrint("Registered Successfully");
-      } catch (e) {
-        showDialog(
-          // ignore: use_build_context_synchronously
-          context: context,
-          builder: (context) {
-            
-        debugPrint("Unsuccessful. Exception Caught!");
-            return AlertDialog(
-              content: Text(e.toString()),
-            );
-          },
-        );
+        BuildContext context) async {
+          debugPrint("Registering...");
+      if (password == confirmPassword) {
+        try {
+          await authServ.signUpUsingEmailAndPassword(username, email, password);
+          debugPrint("Registered Successfully");
+        } on Exception catch (e) {
+          showErrorDialog(context, e.toString());
+          debugPrint("Exception caught: ${e.toString()}");
+        }
+      } else {
+        showErrorDialog(context, "Passwords don't match!");
+        debugPrint("Passwords don't match!");
       }
-    } else {
-      debugPrint("Unsuccessful. Passwords don't match!");
+  }
+  
+  void showErrorDialog(BuildContext context, String message) {
       showDialog(
         context: context,
-        builder: (context) => const AlertDialog(
-          content: Text("Passwords Don't Match"),
-        ),
+        builder: (context) {
+          return AlertDialog(
+            content: Text(message),
+          );
+        },
       );
-    }
   }
 
   void logout() {
