@@ -27,6 +27,7 @@ class _RegisterPageState extends State<RegisterPage> {
   late FocusNode focusNode;
 
   bool passwordVisible = true;
+  bool confirmPasswordVisible = true;
 
   @override
   void initState() {
@@ -128,15 +129,15 @@ class _RegisterPageState extends State<RegisterPage> {
                     controller: confirmPasswordController,
                     labelText: "Confirm Password",
                     textInputType: TextInputType.text,
-                    obscure: passwordVisible,
+                    obscure: confirmPasswordVisible,
                     suffixIcon: IconButton(
                         onPressed: () {
                           setState(() {
-                            passwordVisible = !passwordVisible;
+                            confirmPasswordVisible = !confirmPasswordVisible;
                           });
                         }, // obscure listen to provider class, when icon button pressed, change that value
                         icon: Icon(
-                          passwordVisible
+                          confirmPasswordVisible
                               ? Icons.visibility
                               : Icons.visibility_off,
                           color: Colors.grey.shade600,
@@ -165,6 +166,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           confirmPasswordController.text,
                           widget.context1,
                         );
+                        debugPrint("Passed register method");
                         Navigator.pop(context);
                       },
                       style: ElevatedButton.styleFrom(

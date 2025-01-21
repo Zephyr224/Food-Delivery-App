@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/core/services/auth/auth_service.dart';
 import 'package:food_delivery_app/core/services/service_helpers/login_and_register_helpers.dart';
 import 'package:food_delivery_app/core/utils/food_info.dart';
 import 'package:food_delivery_app/src/example_feature/common/colors.dart';
@@ -21,6 +22,9 @@ class _HomePageState extends State<HomePage> {
   // instantiate slider data
   SliderData sliderData = SliderData();
 
+  // get current user info
+  final authService = AuthService();
+
   // instantiate text controllers
   late FocusNode focusNode;
 
@@ -31,6 +35,7 @@ class _HomePageState extends State<HomePage> {
     // searchController = TextEditingController();
 
     context.read<SliderData>().startTimer();
+    context.read<LoginAndRegisterHelper>().currentUserEmail();
 
     focusNode = FocusNode();
   }
@@ -47,6 +52,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -74,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     BodyTextWidget(
-                      text: "Hello, Zephyr",
+                      text: "Hello, ${context.read<LoginAndRegisterHelper>().userEmail}",
                       fontSize: 14,
                       color: colorH3,
                     ),

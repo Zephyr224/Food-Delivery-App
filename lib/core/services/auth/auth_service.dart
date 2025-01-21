@@ -1,9 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class AuthService {
   //get instance of auth
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  String currentUserEmail = "User";
+
+  // get current user email
+  Future<String> getCurrentUserEmail() async {
+    User? user = _auth.currentUser;
+    debugPrint("Got User Email!!");
+    return user!.email.toString();
+  }
+  
 
   // login with email and password
   Future<UserCredential> signInWithEmailAndPassword(

@@ -34,7 +34,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   Widget build(BuildContext context) {
     return Scaffold(
         bottomNavigationBar: BottomNavigationBar(
-          showSelectedLabels: false,
+          showSelectedLabels: true,
           showUnselectedLabels: false,
           selectedItemColor: Colors.blueAccent,
           unselectedItemColor: Colors.grey,
@@ -44,24 +44,24 @@ class _BottomNavBarState extends State<BottomNavBar> {
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              label: "",
+              label: "Home",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.location_searching),
-              label: "",
+              label: "Near Me",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.shopping_cart),
-              label: "",
+              label: "Cart",
               
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.favorite),
-              label: "",
+              label: "Favorites",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),
-              label: "",
+              label: "Profile",
             ),
           ],
         ),
